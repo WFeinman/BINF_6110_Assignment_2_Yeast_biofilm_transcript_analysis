@@ -15,7 +15,8 @@ BiocManager::install("enrichplot")
 BiocManager::install("GenomicFeatures")
 
 BiocManager::install("txdbmaker")
-BiocManager::install("org.Hs.eg.db")
+#yeast annotation database
+BiocManager::install("org.Sc.sgd.db")
 
 
 
@@ -28,7 +29,7 @@ library("dplyr")
 library("GenomicFeatures")
 
 library(ggplot2)
-library(org.Hs.eg.db)
+library(org.Sc.sgd.db)
 library("pheatmap")
 
 library(tidyverse)
@@ -153,22 +154,149 @@ coord_fixed()
 
 
 
+#Functional Annotation Comparison section
+
 # Make a dataframe containing only our results table post-shrinkage, and with NA values trimmed
 
 res_df <- as.data.frame(resLFC)
 
-
-# Convert Ensembl IDs to Entrez IDs
+# Convert ORFs to Entrez IDs
 # Remove version numbers (e.g., .9 from ENSG00000189221.9)
-ensembl_ids <- rownames(res_df)
-ensembl_ids_clean <- sub("\\..*", "", ensembl_ids)
+ORF_ids <- rownames(res_df)
+ORF_ids_clean <- sub("\\..*", "", ORF_ids)
 
 # Map to Entrez IDs
-gene_map <- bitr(ensembl_ids_clean, 
-                 fromType = "ENSEMBL", 
-                 toType = c("ENTREZID", "SYMBOL"),
-                 OrgDb = org.Hs.eg.db)
+gene_map <- bitr(ORF_ids_clean, 
+                 fromType = "ORF", 
+                 toType = c("ENTREZID", "GENENAME"),
+                 OrgDb = org.Sc.sgd.db)
 
 # Add the mapping to results
-res_df$ENSEMBL <- sub("\\..*", "", rownames(res_df))
-res_df <- merge(res_df, gene_map, by = "ENSEMBL", all.x = TRUE)
+res_df$ORF <- sub("\\..*", "", rownames(res_df))
+res_df <- merge(res_df, gene_map, by = "ORF", all.x = TRUE)
+
+
+
+# Define significant genes (Here we chose p < 0.05 and foldchange > 2, but other values could be justified)
+sig_genes <- res_df %>%
+  filter(padj < 0.05 & abs(log2FoldChange) > 1) %>%
+  pull(ENTREZID) %>%
+  na.omit() %>%
+  unique()
+
+# Define our background list of genes to compare to
+# Rembember that ORA needs an "interesting gene" set and a background set.
+all_genes <- res_df %>%
+  pull(ENTREZID) %>%
+  na.omit() %>%
+  unique()
+
+# Here we'll do a GO analysis for only Biological Process 
+# (Try Molecular Function or Cellular Component instead and see what you get!)
+ego_bp <- enrichGO(gene = sig_genes,
+                   universe = all_genes,
+                   OrgDb = org.Sc.sgd.db,
+                   ont = "BP",
+                   pAdjustMethod = "BH",
+                   pvalueCutoff = 0.05,
+                   qvalueCutoff = 0.2,
+                   readable = FALSE)
+head(as.data.frame(ego_bp))
+
+#Need to define significant and background gene list by ORF to function with KEGG
+
+sig_genes_ORF <- res_df %>%
+  filter(padj < 0.05 & abs(log2FoldChange) > 1) %>%
+  pull(ORF) %>%
+  na.omit() %>%
+  unique()
+
+all_genes_ORF <- res_df %>%
+  pull(ORF) %>%
+  na.omit() %>%
+  unique()
+
+# Now we'll do a KEGG analysis
+kegg_enrich <- enrichKEGG(gene = sig_genes_ORF,
+                          organism = 'sce',
+                          pvalueCutoff = 0.05,
+                          qvalueCutoff = 0.2)
+
+head(as.data.frame(kegg_enrich))
+
+# Dot plots
+dotplot(ego_bp, showCategory = 20, title = "GO Biological Process")
+
+dotplot(kegg_enrich, showCategory = 15, title = "KEGG Pathway Enrichment")
+
+
+# Bar plot
+barplot(ego_bp, showCategory = 15, title = "GO Biological Process")
+
+barplot(kegg_enrich, showCategory = 15, title = "KEGG Biological Process")
+
+# Enrichment map (Displays linked GO terms)
+emapplot(pairwise_termsim(ego_bp), showCategory = 30)
+
+# Notice that none of these plots split our genes by upregulated/downregulated?
+# We would need to split those out ourselves as our gene set of interest
+# Here's an example for upregulation:
+
+upregulated_genes <- res_df %>%
+  filter(padj < 0.05 & log2FoldChange > 1) %>%
+  pull(ENTREZID) %>%
+  na.omit() %>%
+  unique()
+
+ego_bp_up <- enrichGO(gene = upregulated_genes,
+                      universe = all_genes,
+                      OrgDb = org.Sc.sgd.db,
+                      ont = "BP",
+                      pAdjustMethod = "BH",
+                      pvalueCutoff = 0.05,
+                      qvalueCutoff = 0.2,
+                      readable = FALSE)
+
+
+#Plots of upregulated genes:
+
+dotplot(ego_bp_up, showCategory = 15, title = "GO BP - Upregulated Genes")
+
+barplot(ego_bp_up, showCategory = 15, title = "GO BP - Upregulated Genes")
+
+
+#Kegg plot of upregulation
+
+upregulated_genes_ORF <- res_df %>%
+  filter(padj < 0.05 & log2FoldChange > 1) %>%
+  pull(ORF) %>%
+  na.omit() %>%
+  unique()
+
+kegg_up <- enrichKEGG(gene = upregulated_genes_ORF,
+                          organism = 'sce',
+                          pvalueCutoff = 0.05,
+                          qvalueCutoff = 0.2)
+
+barplot(kegg_up, showCategory = 15, title = "KEGG - Upregulated Genes")
+
+
+#Downregulate gene plots
+downregulated_genes <- res_df %>%
+  filter(padj < 0.05 & log2FoldChange < -1) %>%
+  pull(ENTREZID) %>%
+  na.omit() %>%
+  unique()
+
+ego_bp_down <- enrichGO(gene = downregulated_genes,
+                        universe = all_genes,
+                        OrgDb = org.Sc.sgd.db,
+                        ont = "BP",
+                        pAdjustMethod = "BH",
+                        pvalueCutoff = 0.05,
+                        qvalueCutoff = 0.2,
+                        readable = FALSE)
+
+dotplot(ego_bp_down, showCategory = 15, title = "GO BP - Downregulated Genes")
+
+barplot(ego_bp_down, showCategory = 15, title = "GO BP - Downregulated Genes")
