@@ -40,8 +40,7 @@ done
 mkdir quant_output
 
 for SRR in SRR*_transcripts_quant; do
-	
-	mv $(echo $SRR) quant_output/$(echo "$SRR" |trimmed_name= sed 's/.fastq_transcripts_quant//')
+		mv $(echo $SRR) quant_output/$(echo "$SRR" |trimmed_name= sed 's/.fastq_transcripts_quant//')
 done
 
 
