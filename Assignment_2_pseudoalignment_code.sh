@@ -18,8 +18,9 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R6
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_rna.fna.gz
 
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gtf.gz
 
-#Build Salmon index from reference genome and reference transcriptome.
+#Build Salmon index from reference genome and reference transcriptome. -p specifies threads
 grep "^>" <(cat GCF_000146045.2_R64_genomic.fna) | cut -d " " -f 1 > decoys.txt
 
 sed -i.bak -e 's/>//g' decoys.txt
@@ -34,6 +35,13 @@ for SRR in SRR*.fastq; do
 	salmon quant -i salmon_index \
 	-l A -r $(echo $SRR) --validateMappings \
 	-o $(echo $SRR)_transcripts_quant
+done
+
+mkdir quant_output
+
+for SRR in SRR*_transcripts_quant; do
+	
+	mv $(echo $SRR) quant_output/$(echo "$SRR" |trimmed_name= sed 's/.fastq_transcripts_quant//')
 done
 
 
