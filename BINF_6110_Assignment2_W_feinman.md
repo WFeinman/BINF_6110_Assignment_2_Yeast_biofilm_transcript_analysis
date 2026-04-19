@@ -63,6 +63,7 @@ While both MA plots showed a similar distribution shape, the mature biofilm comp
 
 <img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/2427c9ba-7356-4f36-8c9f-21b60b055ad9" />
 
+
 **Figure 7:** PCA analysis of variation between samples. It would appear that a large number of the predictors can be grouped together for change patterns over biofilm development, as 93% of the total variance can be explained by the first 2 principle components. PC1 appears able to clearly delineate biofilm stages, while PC2 seems primarily active in distinguishing the thin biofilm stage. 
 
 
@@ -98,6 +99,7 @@ While both MA plots showed a similar distribution shape, the mature biofilm comp
 <img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/c35ef5f1-e382-417c-81f4-c477a8aa0d91" />
 
 **Figures 15 and 16:** Indicates slightly different metabolic priorities in thin biofilm compared to mature biofilm. While upregulated transcripts remain quite similar (Figure 15), there are a number of differences in downregulated metabolic pathway types after the top 5 most impactful, notably starch and sucrose metabolism.
+
 
 ## Discussion:
 
