@@ -1,0 +1,36 @@
+[2026-04-17 17:40:24.699] [jointLog] [info] setting maxHashResizeThreads to 24
+[2026-04-17 17:40:24.699] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2026-04-17 17:40:24.699] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2026-04-17 17:40:24.699] [jointLog] [info] Setting consensusSlack to selective-alignment default of 0.35.
+[2026-04-17 17:40:24.699] [jointLog] [info] parsing read library format
+[2026-04-17 17:40:24.700] [jointLog] [info] There is 1 library.
+[2026-04-17 17:40:24.700] [jointLog] [info] Loading pufferfish index
+[2026-04-17 17:40:24.700] [jointLog] [info] Loading dense pufferfish index.
+[2026-04-17 17:40:24.775] [jointLog] [info] done
+[2026-04-17 17:40:24.908] [jointLog] [info] Index contained 6109 targets
+[2026-04-17 17:40:24.908] [jointLog] [info] Number of decoys : 17
+[2026-04-17 17:40:24.908] [jointLog] [info] First decoy index : 6092 
+[2026-04-17 17:40:25.027] [jointLog] [info] Automatically detected most likely library type as U
+
+[2026-04-17 17:40:29.425] [jointLog] [info] Computed 6545 rich equivalence classes for further processing
+[2026-04-17 17:40:29.425] [jointLog] [info] Counted 7491225 total reads in the equivalence classes 
+[2026-04-17 17:40:29.446] [jointLog] [info] Number of mappings discarded because of alignment score : 531463
+[2026-04-17 17:40:29.446] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 159409
+[2026-04-17 17:40:29.446] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 109767
+[2026-04-17 17:40:29.446] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings to valid targets : 0
+[2026-04-17 17:40:29.446] [jointLog] [info] Mapping rate = 82.9515%
+
+[2026-04-17 17:40:29.446] [jointLog] [info] finished quantifyLibrary()
+[2026-04-17 17:40:29.448] [jointLog] [info] Starting optimizer
+[2026-04-17 17:40:29.455] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2026-04-17 17:40:29.455] [jointLog] [info] iteration = 0 | max rel diff. = 8083.76
+[2026-04-17 17:40:29.474] [jointLog] [info] iteration = 100 | max rel diff. = 0.226882
+[2026-04-17 17:40:29.489] [jointLog] [info] iteration = 177 | max rel diff. = 0.000310828
+[2026-04-17 17:40:29.489] [jointLog] [info] Finished optimizer
+[2026-04-17 17:40:29.489] [jointLog] [info] writing output 
+
+[2026-04-17 17:40:29.425] [fileLog] [info] 
+At end of round 0
+==================
+Observed 9030851 total fragments (9030851 in most recent round)
+
