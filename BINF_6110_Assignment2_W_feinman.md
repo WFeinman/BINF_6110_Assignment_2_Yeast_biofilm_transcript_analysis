@@ -36,51 +36,67 @@ Specific version information on software packages used may be viewed in the proj
 FastQC showed high quality for all files, with no low-quality reads recorded. This is likely due to a combination of short-read Illumina sequencing being used for the initial study, and pre-trimming of low-quality reads by the original research group already having been applied.
 
 #### MA Plot: Thin Biofilm vs Early Biofilm
-![[Pasted image 20260419044840.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/0f8fe144-64c5-41b1-8832-fd20c9bd2cdd" />
+
 #### MA Plot: Mature Biofilm vs Early Biofilm
-![[Pasted image 20260419044702.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/5444a583-0297-4350-a468-9741c74e6707" />
+
 **Figures 1 and 2:** MA plots summarizing distribution of log fold change after shrinkage for transcript comparisons between biofilm development stages. Positive log fold change values indicate relative transcript increase, while negative log fold change indicates transcript decrease. Blue coloration indicates the change is statistically significant (padj < 0.05).
 
 While both MA plots showed a similar distribution shape, the mature biofilm comparison showed a slightly higher proportion of larger log fold changes, whether for transcript increase or decrease.
 
 
-![[Pasted image 20260419045603.png]]
-![[Pasted image 20260419045621.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/00763e0b-3991-4c36-b193-dcf242e421fd" />
+
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/ef32890e-5be5-4634-b43d-993736bd9c1f" />
+
 **Figures 3 and 4:** Volcano plots of transcript log fold 2 change, emphasizing display of significant transcript change rather than overall data distribution by count. These show similar results to the MA plots, though the expression level differences between stages are more easily visualized.
 
 #### Heatmap: Top 20 Transcripts - Thin Biofilm vs Early Biofilm
-![[Pasted image 20260419050718.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/5d3fd7e7-fe7d-4c38-bae0-5343d519e077" />
+
 #### Heatmap: Top 20 Transcripts - Mature Biofilm vs Early Biofilm
-![[Pasted image 20260419050822.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/3af6831e-c655-462d-bbc1-5d5df7309fbe" />
+
 **Figures 5 and 6:** Heatmaps of the top 20 genes by p-value confidence displaying transcriptional differences between early biofilm and thin biofilm (Figure 5) or mature biofilm (Figure 6). Gene names are displayed by ORF-name. Cell color beside the gene names indicates increased expression (red) or decreased expression (blue). While some transcripts are shared between both heatmaps, there is a notable difference in transcript activity and the significance-listing thereof in between stages.
 
 
-![[Pasted image 20260419051922.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/2427c9ba-7356-4f36-8c9f-21b60b055ad9" />
+
 **Figure 7:** PCA analysis of variation between samples. It would appear that a large number of the predictors can be grouped together for change patterns over biofilm development, as 93% of the total variance can be explained by the first 2 principle components. PC1 appears able to clearly delineate biofilm stages, while PC2 seems primarily active in distinguishing the thin biofilm stage. 
 
 
 #### Enrichment Map: Transcript Activity by Linked GO terms
-![[Pasted image 20260419053737.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/c80b874a-888a-4352-a958-d3710e51230c" />
+
 **Figure 8:** Enrichment map by GO-term linkage. Shows functional relations of altered gene expression in a wider biological context, grouping related terms together.
 
 
-![[Pasted image 20260419054242.png]]
-![[Pasted image 20260419055137.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/1e9d955d-5e65-41be-94ba-cdf1ad143b8b" />
+
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/d28f56ef-290e-4212-8de5-06489fcbfb89" />
+
 **Figures 9 and 10:** Indicates upregulated transcript activity by gene type (Figure 9)  or metabolic process (Figure 10) in mature biofilm. Translation/Ribosome activity is distinctly elevated above other categories.
 
 
-![[Pasted image 20260419054758.png]]
-![[Pasted image 20260419055054.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/efd604a6-53a5-437b-940d-31f3940a8d36" />
+
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/5141eeb3-972d-4024-b319-65445f6d885e" />
+
 **Figure 11 and 12:** Indicates downregulated transcript activity by gene type (Figure 11)  or metabolic process (Figure 12) in mature biofilm. Transmembrane transport and secondary-metabolite biosynthesis transcript activity is distinctly surpressed compared to other categories.
 
 
-![[Pasted image 20260419063712.png]]
-![[Pasted image 20260419063436.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/6bd56485-819d-4190-a2ac-89d284e79852" />
+
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/cd956115-0445-4e64-b67d-aa16d1404566" />
+
 **Figures 13 and 14:** Indicates differing transcriptional activity in thin biofilm samples. Note the lower GeneRatio scale in Figure 14 compared to Figure 11.
 
 
-![[Pasted image 20260419064235.png]]
-![[Pasted image 20260419064245.png]]
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/82f4ce7c-9ba9-41e9-bb11-727b0bf23909" />
+
+<img width="1724" height="1190" alt="image" src="https://github.com/user-attachments/assets/c35ef5f1-e382-417c-81f4-c477a8aa0d91" />
+
 **Figures 15 and 16:** Indicates slightly different metabolic priorities in thin biofilm compared to mature biofilm. While upregulated transcripts remain quite similar (Figure 15), there are a number of differences in downregulated metabolic pathway types after the top 5 most impactful, notably starch and sucrose metabolism.
 
 ## Discussion:
