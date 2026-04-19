@@ -30,6 +30,8 @@ if (!require("pheatmap", quietly = TRUE))
   BiocManager::install("pheatmap")
 if (!require("txdbmaker", quietly = TRUE))
   BiocManager::install("txdbmaker")
+if (!require("tximport", quietly = TRUE))
+  BiocManager::install("tximport")
 
 #yeast annotation database
 if (!require("org.Sc.sgd.db", quietly = TRUE))
